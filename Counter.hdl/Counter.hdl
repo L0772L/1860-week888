@@ -1,0 +1,9 @@
+CHIP Counter {
+    IN inc, reset;
+    OUT out[16];
+
+    PARTS:
+    Register16(in=nextValue, load=inc, out=currentValue, out=out);
+    Inc16(in=currentValue, out=incrementedValue);
+    Mux16(a=incrementedValue, b=false, sel=reset, out=nextValue);
+}
